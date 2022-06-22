@@ -5,7 +5,7 @@
     <classes>
       <class name="com.contactdiary.appium.ContactDiaryTest">
         <methods>
-          <include name="test_tambahEvent"/>
+          <include name="test_functionEvent"/>
           <include name="init"/>
         </methods>
       </class> <!-- com.contactdiary.appium.ContactDiaryTest -->
