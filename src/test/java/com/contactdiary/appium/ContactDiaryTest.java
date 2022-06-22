@@ -26,6 +26,7 @@ public class ContactDiaryTest {
 		capabilities.setCapability("appPackage", "com.apozas.contactdiary");
 		capabilities.setCapability("appActivity", "com.apozas.contactdiary.MainActivity");
 		driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+		
 		mainActivity = new MainActivity(driver);
 		touch = new CallTouch(driver);
 		eventActivity = new EventActivity(driver);
