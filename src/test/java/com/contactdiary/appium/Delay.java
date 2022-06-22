@@ -16,8 +16,6 @@ public class Delay {
 		PageFactory.initElements(new AppiumFieldDecorator(driver), this);
 	}
 
-	public void getDelay(int input) {
-		driver.manage().timeouts().implicitlyWait(input, TimeUnit.SECONDS);
-	}
+	
 
 }

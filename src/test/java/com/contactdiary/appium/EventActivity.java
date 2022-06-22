@@ -1,5 +1,7 @@
 package com.contactdiary.appium;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
@@ -45,8 +47,10 @@ public class EventActivity {
 	@AndroidFindBy(id = "com.apozas.contactdiary:id/eventnotes_input" )
 	public WebElement btnMitigation;
 	
-	@AndroidFindBy(id = "com.apozas.contactdiary:id/okButton_AddEvent" )
+	@AndroidFindBy(xpath = "//android.widget.ImageButton[1]" )
 	public WebElement btnAddEvent;
+	
+//	com.apozas.contactdiary:id/okButton_AddEvent
 	
 	public void startEventDate() {
 		inStartDate.click();
@@ -62,14 +66,18 @@ public class EventActivity {
 		inEndTime.click();
 	}
 	
-	public void addEvent(String nama, String place,
-			String people, String phone, String note) {
+	public void addEvent1(String nama, String place) {
 		inputName.sendKeys(nama);
 		inputPlace.sendKeys(place);
-		
+	}
+	
+	public void addEvent2(String people, String phone, String note) {
 		inputPeople.sendKeys(people);
 		inputPhone.sendKeys(phone);
 		inputNote.sendKeys(note);
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+
+//		btnAddEvent.click();
 	}
 	
 	public void boxOutdoor() {
@@ -82,6 +90,7 @@ public class EventActivity {
 	public void save() {
 		btnAddEvent.click();
 	}
+	
 	
 	
 	
