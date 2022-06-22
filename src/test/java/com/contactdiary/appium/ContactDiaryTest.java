@@ -2,6 +2,7 @@ package com.contactdiary.appium;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.BeforeTest;
@@ -16,10 +17,12 @@ public class ContactDiaryTest {
 	public EventActivity eventActivity;
 	public CallTouch touch;
 	public Calendar calendar;
-	public Delay delay;
 	public Mitigation mitigation;
 	
-
+	public void delay(int input) {
+		driver.manage().timeouts().implicitlyWait(input, TimeUnit.SECONDS);
+	}
+	
 	@BeforeTest
 	public void init() throws MalformedURLException {
 		DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -31,7 +34,6 @@ public class ContactDiaryTest {
 		touch = new CallTouch(driver);
 		eventActivity = new EventActivity(driver);
 		calendar = new Calendar(driver);
-		delay = new Delay(driver);
 		mitigation = new Mitigation(driver);
 	}
 	
@@ -39,50 +41,49 @@ public class ContactDiaryTest {
 	public void test_gotoEventActivity() {
 		mainActivity.clickBtnUtama();
 		touch.callTouch(950, 1250);
-		delay.getDelay(1);
+		delay(1);
 	}
 	
 	@Test(priority = 2)
 	public void test_functionEvent() {
-		eventActivity.addEvent("Trip Pantai", "Pulau Pari", 
-				"Barudaks", "08212121", "logika tanpa logistik = anarki");
-		delay.getDelay(1);
+		eventActivity.addEvent1("Trip Pantai", "Pulau Pari");
+		delay(1);
 		
 		eventActivity.startEventDate();		//click start date
-		delay.getDelay(1);
+		delay(1);
 		
 		calendar.clickHeaderYear();			//click year
 		touch.callSwipe(800,580,800,1400);	//swipe
-		delay.getDelay(1);
+		delay(1);
 		
 		touch.callTouch(538, 845);			//tahun
-		delay.getDelay(1);
+		delay(1);
 		touch.callTouch(538, 1040);			//tanggal
-		delay.getDelay(1);
+		delay(1);
 		touch.callTouch(771, 1448);			//OK
-		delay.getDelay(1);
+		delay(1);
 		
 		eventActivity.startEventTime();		//click start time
-		delay.getDelay(1);
+		delay(1);
 		
 		touch.callTouch(653, 786);		//hour
-		delay.getDelay(1);
+		delay(1);
 		touch.callTouch(535, 738);		//minute
-		delay.getDelay(1);
+		delay(1);
 		touch.callTouch(795,1362);		//OK
-		delay.getDelay(1);
+		delay(1);
 		
 		eventActivity.endEventDate();		//click start date
-		delay.getDelay(1);
+		delay(1);
 		
 		calendar.clickHeaderYear();			//click year
 		
 		touch.callTouch(538, 580);			//tahun
-		delay.getDelay(1);
+		delay(1);
 		touch.callTouch(538, 1290);	//1140		//tanggal
-		delay.getDelay(1);
+		delay(1);
 		touch.callTouch(771, 1448);			//OK
-		delay.getDelay(1);
+		delay(1);
 		
 		eventActivity.boxOutdoor.click();
 		
@@ -94,9 +95,13 @@ public class ContactDiaryTest {
 		mitigation.clickBoxVentilate();
 		mitigation.clickOK();
 		
+		delay(3);
+		eventActivity.addEvent2("Barudaks", "08212121", "logika tanpa logistik = anarki");
+//		delay(5);
+		
 		eventActivity.save();
 		
-		delay.getDelay(5);
+		delay(10);
 	}
 
 }
